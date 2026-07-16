@@ -1,6 +1,6 @@
 # Digital Streaming Operations Runbook Website
 
-A static, responsive website for the News Desk Operator Verification Guide.
+A static, responsive website for Stream Troubleshooting.
 
 ## Run locally
 
@@ -25,8 +25,6 @@ Then open `http://localhost:8080`.
 - No server or database required
 
 ## Deployment
-
-Upload the folder to any static host, including GitHub Pages, Netlify, Cloudflare Pages, S3 static hosting, or a station intranet web server.
 
 
 Landscape print layout enabled with increased flowchart spacing.
