@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Digital Streaming Operations Runbook</title>
+<link href="assets/styles.css" rel="stylesheet"/>
+<link href="assets/svg-flowcharts.css" rel="stylesheet"/></head>
+<body class="landscape">
+<div class="app">
+<aside class="sidebar" id="sidebar">
+<div class="brand">
+<div class="brand-mark">DS</div>
+<div><strong>Streaming Runbook</strong><span>News Desk Guide</span></div>
+</div>
+<label class="search"><span>Search</span><input id="searchInput" placeholder="Find a playbook or tool" type="search"/></label>
+<nav id="nav">
+<a data-title="Home" href="#home">Home</a>
+<a data-title="How to Use" href="#how-to-use">How to Use</a>
+<a data-title="Operator Tools" href="#operator-tools">Operator Tools</a>
+<a data-title="System Overview" href="#system-overview">System Overview</a>
+<div class="nav-heading">Operator Runbooks</div>
+<a data-title="Stream Down" href="#stream-down">Stream Down</a>
+<a data-title="Stream Frozen" href="#stream-frozen">Stream Frozen</a>
+<a data-title="Stream Stuck on Slate" href="#stream-stuck-on-slate">Stream Stuck on Slate</a>
+<a data-title="Wrong Program Streaming" href="#wrong-program">Wrong Program Streaming</a>
+<a data-title="Broadcast Commercials Streaming" href="#broadcast-commercials">Broadcast Commercials Streaming</a>
+<a data-title="Break Timing Incorrect" href="#break-timing">Break Timing Incorrect</a>
+<a data-title="Audio / Video Problems" href="#audio-video">Audio / Video Problems</a>
+<a data-title="Buffering / Playback" href="#buffering">Buffering / Playback</a>
+<div class="nav-heading">References</div>
+<a data-title="Engineering Quick Reference" href="#engineering-reference">Engineering Quick Reference</a>
+<a data-title="Failure Isolation Matrix" href="#failure-matrix">Failure Isolation Matrix</a>
+<a data-title="Escalation Matrix" href="#escalation-matrix">Escalation Matrix</a>
+<a data-title="Incident Worksheet" href="#incident-worksheet">Incident Worksheet</a>
+</nav>
+<div class="sidebar-actions">
+<button id="printBtn">Print Current Page</button>
+<button id="printAllBtn">Print Full Guide</button>
+</div>
+</aside>
+<main class="content">
+<button aria-label="Open navigation" class="menu-btn" id="menuBtn">☰</button>
+<section class="page-section hero" id="home">
+<div class="eyebrow">Digital Streaming Operations Runbook</div>
+<h1>Streaming Verification Guide</h1>
+<p>Use the symptom-driven runbooks to verify, isolate, document, and escalate live-streaming incidents.</p>
+<div class="hero-actions">
+<a class="primary" href="#symptom-index">Start Troubleshooting</a>
+<a href="#operator-tools">Open Operator Tools</a>
+</div>
+<div class="workflow">
+<span>Observe</span><b>→</b><span>Verify</span><b>→</b><span>Isolate</span><b>→</b><span>Escalate</span><b>→</b><span>Document</span>
+</div>
+</section>
+<section class="page-section" id="how-to-use">
+<h2>How to Use This Guide</h2>
+<div class="cards five">
+<article><b>1</b><h3>Observe</h3><p>Identify the reported symptom and affected stream.</p></article>
+<article><b>2</b><h3>Verify</h3><p>Use the Station Website, Quickplay, ADit, mobile, and OTT tools.</p></article>
+<article><b>3</b><h3>Isolate</h3><p>Determine whether the issue is viewer, platform, broadcast, or system-wide.</p></article>
+<article><b>4</b><h3>Escalate</h3><p>Contact the correct team with dashboard evidence and exact times.</p></article>
+<article><b>5</b><h3>Document</h3><p>Capture screenshots, ticket numbers, actions, and final resolution.</p></article>
+</div>
+</section>
+<section class="page-section" id="operator-tools">
+<h2>Operator Tools</h2>
+<div class="tool-grid">
+<article class="tool-card"><h3>Quickplay Dashboard</h3><p>Verify channel health, ingest, manifest updates, playback preview, and active alarms.</p><ul><li>Channel Healthy</li><li>Ingest Active</li><li>Manifest Updating</li><li>Playback Available</li><li>No Active Alarms</li></ul></article>
+<article class="tool-card"><h3>ADit Dashboard</h3><p>Verify playlist progression, current events, break timing, and missed events.</p><ul><li>Current Playlist</li><li>Current Event</li><li>Playlist Advancing</li><li>Commercial Timing</li><li>No Missed Events</li></ul></article>
+<article class="tool-card"><h3>Station Website</h3><p>Confirm live playback, audio/video, program match, slate, freeze, or buffering.</p></article>
+<article class="tool-card"><h3>Mobile &amp; OTT</h3><p>Compare the same stream on mobile, Roku, Fire TV, and Apple TV.</p></article>
+<article class="tool-card"><h3>Confidence Monitor</h3><p>Compare OTA output with the digital stream to separate broadcast and streaming failures.</p></article>
+</div>
+</section>
+<section class="page-section" id="system-overview">
+<h2>Streaming System Overview</h2>
+<div class="system-flow">
+<div>Master Control</div><span>→</span><div>ADit<br/><small>SCTE-104</small></div><span>→</span><div>Harmonic X2S<br/><small>SCTE-35 / Encoding</small></div><span>→</span><div>Quickplay<br/><small>Ingest / Packaging / Manifest</small></div><span>→</span><div>Google Ad Manager<br/><small>DAI</small></div><span>→</span><div>CDN</div><span>→</span><div>Viewer</div>
+</div>
+</section>
+<section class="page-section" id="symptom-index">
+<h2>What Are You Seeing?</h2>
+<div class="symptom-grid">
+<a class="symptom-card" href="#stream-down"><strong>Stream Down</strong><span>Use this page when the live stream will not start, displays a black screen, or produces a playback error.</span></a>
+<a class="symptom-card" href="#stream-frozen"><strong>Stream Frozen</strong><span>Use this page when playback begins normally but the video or audio later stops advancing.</span></a>
+<a class="symptom-card" href="#stream-stuck-on-slate"><strong>Stream Stuck on Slate</strong><span>Use this page when the stream remains on a slate instead of returning to programming after a commercial break.</span></a>
+<a class="symptom-card" href="#wrong-program"><strong>Wrong Program Streaming</strong><span>Use this page when the streaming service shows content that does not match the expected program or OTA broadcast.</span></a>
+<a class="symptom-card" href="#broadcast-commercials"><strong>Broadcast Commercials Streaming</strong><span>Use this page when OTA broadcast commercials appear in the digital stream instead of digitally inserted ads.</span></a>
+<a class="symptom-card" href="#break-timing"><strong>Break Timing Incorrect</strong><span>Use this page when digital ad breaks start or end too early or too late compared with the OTA broadcast.</span></a>
+<a class="symptom-card" href="#audio-video"><strong>Audio / Video Problems</strong><span>Use this page when the stream has missing audio, missing video, distortion, pixelation, or lip-sync problems.</span></a>
+<a class="symptom-card" href="#buffering"><strong>Buffering / Playback</strong><span>Use this page when playback pauses, reloads, takes too long to start, or repeatedly stalls.</span></a>
+</div>
+</section>
+<section class="page-section playbook stream-down-fixed" id="stream-down">
+<div class="section-header"><div><div class="eyebrow">Operator Runbook</div><h2>Stream Down</h2></div><button class="print-section">Print Page</button></div>
+<div class="when-use"><strong>When to use:</strong> Use this page when the live stream will not start, displays a black screen, or produces a playback error.</div>
+<div class="top-grid">
+<article class="info-panel"><h3>Symptoms</h3><ul><li>Black screen</li><li>Playback error</li><li>Stream unavailable</li></ul></article>
+<article class="info-panel"><h3>Operator Tools</h3><div class="chips"><span class="chip">Quickplay Dashboard</span><span class="chip">ADit Dashboard</span><span class="chip">Station Website</span><span class="chip">Mobile App</span><span class="chip">OTT Device</span></div></article>
+</div>
+<h3 class="verify-title">Verify the Issue</h3>
+<figure class="svg-flowchart"><img alt="Stream Down flowchart" src="assets/flowcharts/stream-down.svg"/></figure>
+<div class="two-col">
+<article class="info-panel"><h3>Things That Are Helpful</h3><ul><li>Time issue started</li><li>Affected stream</li><li>Website result</li><li>Mobile/OTT result</li><li>Screenshot</li></ul></article>
+<article class="info-panel"><h3>Engineering Investigation</h3><ul><li>Harmonic X2S</li><li>Quickplay ingest</li><li>Manifest generation</li><li>CDN delivery</li></ul></article>
+</div>
+</section>
+<section class="page-section playbook" id="stream-frozen">
+<div class="section-header"><div><div class="eyebrow">Operator Runbook</div><h2>Stream Frozen</h2></div><button class="print-section">Print Page</button></div>
+<div class="when-use"><strong>When to use:</strong> Use this page when playback begins normally but the video or audio later stops advancing.</div>
+<div class="top-grid">
+<article class="info-panel"><h3>Symptoms</h3><ul><li>Frozen video</li><li>Frozen audio</li><li>Playback timer stops</li></ul></article>
+<article class="info-panel"><h3>Operator Tools</h3><div class="chips"><span class="chip">Quickplay Dashboard</span><span class="chip">Station Website</span><span class="chip">Mobile App</span><span class="chip">OTT Device</span></div></article>
+</div>
+<h3 class="verify-title">Verify the Issue</h3>
+<figure class="svg-flowchart"><img alt="Stream Frozen flowchart" src="assets/flowcharts/stream-frozen.svg"/></figure>
+<div class="two-col">
+<article class="info-panel"><h3>Things That Are Helpful</h3><ul><li>Time issue started</li><li>Affected stream</li><li>Freeze duration</li><li>Platform results</li><li>Screenshot</li></ul></article>
+<article class="info-panel"><h3>Engineering Investigation</h3><ul><li>Harmonic X2S</li><li>Quickplay ingest</li><li>Manifest refresh</li><li>CDN delivery</li></ul></article>
+</div>
+</section>
+<section class="page-section playbook" id="stream-stuck-on-slate">
+<div class="section-header"><div><div class="eyebrow">Operator Runbook</div><h2>Stream Stuck on Slate</h2></div><button class="print-section">Print Page</button></div>
+<div class="when-use"><strong>When to use:</strong> Use this page when the stream remains on a slate instead of returning to programming after a commercial break.</div>
+<div class="top-grid">
+<article class="info-panel"><h3>Symptoms</h3><ul><li>Slate remains after break</li><li>Program does not return</li><li>Audio may be silent</li></ul></article>
+<article class="info-panel"><h3>Operator Tools</h3><div class="chips"><span class="chip">ADit Dashboard</span><span class="chip">Quickplay Dashboard</span><span class="chip">Station Website</span><span class="chip">Mobile App</span><span class="chip">OTT Device</span></div></article>
+</div>
+<h3 class="verify-title">Verify the Issue</h3>
+<figure class="svg-flowchart"><img alt="Stream Stuck on Slate flowchart" src="assets/flowcharts/stream-stuck-on-slate.svg"/></figure>
+<div class="two-col">
+<article class="info-panel"><h3>Things That Are Helpful</h3><ul><li>Exact break time</li><li>Affected stream</li><li>ADit event status</li><li>Quickplay state</li><li>Screenshot</li></ul></article>
+<article class="info-panel"><h3>Engineering Investigation</h3><ul><li>ADit playlist and cue-out/cue-in</li><li>Harmonic SCTE-35</li><li>Quickplay break state</li><li>GAM completion</li></ul></article>
+</div>
+</section>
+<section class="page-section playbook" id="wrong-program">
+<div class="section-header"><div><div class="eyebrow">Operator Runbook</div><h2>Wrong Program Streaming</h2></div><button class="print-section">Print Page</button></div>
+<div class="when-use"><strong>When to use:</strong> Use this page when the streaming service shows content that does not match the expected program or OTA broadcast.</div>
+<div class="top-grid">
+<article class="info-panel"><h3>Symptoms</h3><ul><li>Wrong newscast</li><li>Wrong live event</li><li>Different content than OTA</li></ul></article>
+<article class="info-panel"><h3>Operator Tools</h3><div class="chips"><span class="chip">Quickplay Dashboard</span><span class="chip">ADit Dashboard</span><span class="chip">Station Website</span><span class="chip">Mobile App</span><span class="chip">Confidence Monitor</span></div></article>
+</div>
+<h3 class="verify-title">Verify the Issue</h3>
+<figure class="svg-flowchart"><img alt="Wrong Program Streaming flowchart" src="assets/flowcharts/wrong-program.svg"/></figure>
+<div class="two-col">
+<article class="info-panel"><h3>Things That Are Helpful</h3><ul><li>Expected program</li><li>Actual program</li><li>Time</li><li>Affected stream</li><li>Screenshot</li></ul></article>
+<article class="info-panel"><h3>Engineering Investigation</h3><ul><li>Master Control routing</li><li>Harmonic input mapping</li><li>Quickplay channel mapping</li><li>Manifest references</li></ul></article>
+</div>
+</section>
+<section class="page-section playbook" id="broadcast-commercials">
+<div class="section-header"><div><div class="eyebrow">Operator Runbook</div><h2>Broadcast Commercials Streaming</h2></div><button class="print-section">Print Page</button></div>
+<div class="when-use"><strong>When to use:</strong> Use this page when OTA broadcast commercials appear in the digital stream instead of digitally inserted ads.</div>
+<div class="top-grid">
+<article class="info-panel"><h3>Symptoms</h3><ul><li>OTA commercials online</li><li>Digital ads missing</li><li>Local TV spots streamed</li></ul></article>
+<article class="info-panel"><h3>Operator Tools</h3><div class="chips"><span class="chip">ADit Dashboard</span><span class="chip">Quickplay Dashboard</span><span class="chip">Station Website</span><span class="chip">Mobile App</span><span class="chip">OTT Device</span></div></article>
+</div>
+<h3 class="verify-title">Verify the Issue</h3>
+<figure class="svg-flowchart"><img alt="Broadcast Commercials Streaming flowchart" src="assets/flowcharts/broadcast-commercials.svg"/></figure>
+<div class="two-col">
+<article class="info-panel"><h3>Things That Are Helpful</h3><ul><li>Break start time</li><li>Program</li><li>ADit current event</li><li>Quickplay break state</li><li>Screenshot</li></ul></article>
+<article class="info-panel"><h3>Engineering Investigation</h3><ul><li>ADit SCTE-104</li><li>Harmonic SCTE-35</li><li>Quickplay cue processing</li><li>GAM response</li></ul></article>
+</div>
+</section>
+<section class="page-section playbook" id="break-timing">
+<div class="section-header"><div><div class="eyebrow">Operator Runbook</div><h2>Break Timing Incorrect</h2></div><button class="print-section">Print Page</button></div>
+<div class="when-use"><strong>When to use:</strong> Use this page when digital ad breaks start or end too early or too late compared with the OTA broadcast.</div>
+<div class="top-grid">
+<article class="info-panel"><h3>Symptoms</h3><ul><li>Ads begin early or late</li><li>Program returns early or late</li><li>Beginning of program is missed</li></ul></article>
+<article class="info-panel"><h3>Operator Tools</h3><div class="chips"><span class="chip">ADit Dashboard</span><span class="chip">Quickplay Dashboard</span><span class="chip">Station Website</span><span class="chip">Mobile App</span><span class="chip">Confidence Monitor</span></div></article>
+</div>
+<h3 class="verify-title">Verify the Issue</h3>
+<figure class="svg-flowchart"><img alt="Break Timing Incorrect flowchart" src="assets/flowcharts/break-timing.svg"/></figure>
+<div class="two-col">
+<article class="info-panel"><h3>Things That Are Helpful</h3><ul><li>Exact break time</li><li>Scheduled duration</li><li>Program</li><li>ADit timing</li><li>Screenshot or recording</li></ul></article>
+<article class="info-panel"><h3>Engineering Investigation</h3><ul><li>ADit playlist timing</li><li>SCTE-104 timing</li><li>Harmonic SCTE-35</li><li>Quickplay break processing</li></ul></article>
+</div>
+</section>
+<section class="page-section playbook" id="audio-video">
+<div class="section-header"><div><div class="eyebrow">Operator Runbook</div><h2>Audio / Video Problems</h2></div><button class="print-section">Print Page</button></div>
+<div class="when-use"><strong>When to use:</strong> Use this page when the stream has missing audio, missing video, distortion, pixelation, or lip-sync problems.</div>
+<div class="top-grid">
+<article class="info-panel"><h3>Symptoms</h3><ul><li>No audio or video</li><li>Distorted audio/video</li><li>Lip-sync problem</li></ul></article>
+<article class="info-panel"><h3>Operator Tools</h3><div class="chips"><span class="chip">Quickplay Dashboard</span><span class="chip">Station Website</span><span class="chip">Mobile App</span><span class="chip">OTT Device</span><span class="chip">Confidence Monitor</span></div></article>
+</div>
+<h3 class="verify-title">Verify the Issue</h3>
+<figure class="svg-flowchart"><img alt="Audio / Video Problems flowchart" src="assets/flowcharts/audio-video.svg"/></figure>
+<div class="two-col">
+<article class="info-panel"><h3>Things That Are Helpful</h3><ul><li>Exact symptom</li><li>Time</li><li>Affected stream</li><li>Platform comparison</li><li>Screenshot/recording</li></ul></article>
+<article class="info-panel"><h3>Engineering Investigation</h3><ul><li>Harmonic audio/video inputs</li><li>Audio mapping and PIDs</li><li>Quickplay ingest</li><li>CDN/player delivery</li></ul></article>
+</div>
+</section>
+<section class="page-section playbook" id="buffering">
+<div class="section-header"><div><div class="eyebrow">Operator Runbook</div><h2>Buffering / Playback</h2></div><button class="print-section">Print Page</button></div>
+<div class="when-use"><strong>When to use:</strong> Use this page when playback pauses, reloads, takes too long to start, or repeatedly stalls.</div>
+<div class="top-grid">
+<article class="info-panel"><h3>Symptoms</h3><ul><li>Frequent buffering</li><li>Playback pauses/restarts</li><li>Long startup time</li></ul></article>
+<article class="info-panel"><h3>Operator Tools</h3><div class="chips"><span class="chip">Quickplay Dashboard</span><span class="chip">Station Website</span><span class="chip">Mobile App</span><span class="chip">OTT Device</span><span class="chip">Network Check</span></div></article>
+</div>
+<h3 class="verify-title">Verify the Issue</h3>
+<figure class="svg-flowchart"><img alt="Buffering / Playback flowchart" src="assets/flowcharts/buffering.svg"/></figure>
+<div class="two-col">
+<article class="info-panel"><h3>Things That Are Helpful</h3><ul><li>Time/frequency</li><li>Connection type</li><li>Affected platforms</li><li>Different-network comparison</li><li>Screenshot</li></ul></article>
+<article class="info-panel"><h3>Engineering Investigation</h3><ul><li>Harmonic output bitrate</li><li>Quickplay packaging</li><li>CDN latency</li><li>Player telemetry</li></ul></article>
+</div>
+</section>
+<section class="page-section" id="engineering-reference">
+<h2>Engineering Quick Reference</h2>
+<div class="system-flow vertical">
+<div>Master Control / Broadcast Source</div><span>↓</span>
+<div class="green">ADit Dashboard<br/><small>Playlist events and SCTE-104 cues</small></div><span>↓</span>
+<div class="yellow">Harmonic X2S<br/><small>Encoding and SCTE-35 generation</small></div><span>↓</span>
+<div class="green">Quickplay Dashboard<br/><small>Ingest, packaging, manifest, playback</small></div><span>↓</span>
+<div class="yellow">Google Ad Manager<br/><small>Dynamic ad decisioning</small></div><span>↓</span>
+<div>CDN</div><span>↓</span><div>Website / Mobile / OTT Viewer</div>
+</div>
+<div class="two-col">
+<article class="info-panel"><h3>Recommended Check Order</h3><ol><li>Confirm OTA source and routing.</li><li>Verify Harmonic X2S input/output health.</li><li>Check Quickplay ingest and manifest.</li><li>For break issues, inspect ADit event timing.</li><li>Check GAM after cue delivery is confirmed.</li><li>Check CDN/player telemetry.</li></ol></article>
+<article class="info-panel"><h3>Evidence to Capture</h3><ul><li>Exact incident time and affected stream</li><li>ADit current event or break state</li><li>Quickplay health and active alarms</li><li>Harmonic alarms, input lock, output status</li><li>Platform comparison and screenshot</li></ul></article>
+</div>
+</section>
+<section class="page-section" id="failure-matrix">
+<h2>Failure Isolation Matrix</h2>
+<div class="table-wrap">
+<table class="matrix">
+<thead><tr><th>Symptom</th><th>Master Control</th><th>ADit</th><th>Harmonic X2S</th><th>Quickplay</th><th>GAM</th><th>CDN</th></tr></thead>
+<tbody>
+<tr><th>Stream Down</th><td></td><td></td><td class="primary">Primary</td><td class="primary">Primary</td><td class="possible">Possible</td><td class="primary">Primary</td></tr>
+<tr><th>Stream Frozen</th><td></td><td></td><td class="primary">Primary</td><td class="likely">Likely</td><td></td><td class="likely">Likely</td></tr>
+<tr><th>Stuck on Slate</th><td></td><td class="likely">Likely</td><td class="primary">Primary</td><td class="primary">Primary</td><td class="likely">Likely</td><td></td></tr>
+<tr><th>Wrong Program</th><td class="primary">Primary</td><td></td><td class="likely">Likely</td><td class="primary">Primary</td><td></td><td></td></tr>
+<tr><th>Broadcast Commercials</th><td></td><td class="primary">Primary</td><td class="primary">Primary</td><td class="primary">Primary</td><td class="primary">Primary</td><td></td></tr>
+<tr><th>Break Timing</th><td class="possible">Possible</td><td class="primary">Primary</td><td class="likely">Likely</td><td class="likely">Likely</td><td class="possible">Possible</td><td></td></tr>
+<tr><th>Audio / Video</th><td class="likely">Likely</td><td></td><td class="primary">Primary</td><td class="likely">Likely</td><td></td><td class="possible">Possible</td></tr>
+<tr><th>Buffering</th><td></td><td></td><td class="possible">Possible</td><td class="likely">Likely</td><td></td><td class="primary">Primary</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="page-section" id="escalation-matrix">
+<h2>Escalation Matrix</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Condition</th><th>Primary Contact</th><th>Include</th><th>Priority</th></tr></thead>
+<tbody>
+<tr><td>OTA is wrong, frozen, missing A/V, or off-air</td><td>Master Control</td><td>Time, program, channel, confidence monitor</td><td class="primary">P1</td></tr>
+<tr><td>Multiple streaming platforms show same outage</td><td>Engineering</td><td>Quickplay, platform results, screenshot</td><td class="primary">P1</td></tr>
+<tr><td>Single app or device only</td><td>Digital Operations</td><td>Device, app/platform, screenshot</td><td class="possible">P3</td></tr>
+<tr><td>Stuck on slate after break</td><td>Engineering</td><td>Break time, ADit event, Quickplay state</td><td class="primary">P1</td></tr>
+<tr><td>Broadcast commercials stream online</td><td>Engineering</td><td>Break time, ADit/Quickplay state</td><td class="primary">P1</td></tr>
+<tr><td>Break timing error</td><td>Engineering</td><td>Program, exact times, ADit timing</td><td class="likely">P2</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<section class="page-section" id="incident-worksheet">
+<h2>Streaming Incident Worksheet</h2>
+<form class="incident-form" id="incidentForm">
+<div class="form-grid">
+<label>Date<input name="date" type="date"/></label>
+<label>Time first observed<input name="time" type="time"/></label>
+<label>Program<input name="program" type="text"/></label>
+<label>Affected stream<input name="stream" type="text"/></label>
+<label>Reported by<input name="reportedBy" type="text"/></label>
+<label>Issue type<select name="issueType"><option>Stream Down</option><option>Stream Frozen</option><option>Stuck on Slate</option><option>Wrong Program</option><option>Broadcast Commercials</option><option>Break Timing</option><option>Audio / Video</option><option>Buffering</option></select></label>
+</div>
+<fieldset><legend>Platforms Tested</legend>
+<div class="check-grid">
+<label><input name="platform" type="checkbox" value="Website"/> Station Website</label>
+<label><input name="platform" type="checkbox" value="Mobile"/> Mobile App</label>
+<label><input name="platform" type="checkbox" value="Roku"/> Roku</label>
+<label><input name="platform" type="checkbox" value="FireTV"/> Fire TV</label>
+<label><input name="platform" type="checkbox" value="AppleTV"/> Apple TV</label>
+</div>
+</fieldset>
+<div class="form-grid">
+<label>Quickplay status<input name="quickplay" type="text"/></label>
+<label>Quickplay alarms<input name="quickplayAlarms" type="text"/></label>
+<label>ADit current event<input name="aditEvent" type="text"/></label>
+<label>ADit break status<input name="aditBreak" type="text"/></label>
+<label>OTA status<input name="ota" type="text"/></label>
+<label>Ticket / case number<input name="ticket" type="text"/></label>
+</div>
+<label>Incident description<textarea name="description" rows="5"></textarea></label>
+<label>Actions taken / escalation<textarea name="actions" rows="5"></textarea></label>
+<label>Resolution<textarea name="resolution" rows="4"></textarea></label>
+<div class="form-actions"><button id="saveIncident" type="button">Save to Browser</button><button id="downloadIncident" type="button">Download Incident JSON</button><button type="reset">Clear</button></div>
+</form>
+</section>
+</main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+.svg-flowchart{width:100%;margin:0 0 14px;padding:10px 0;border-top:2px solid var(--navy);border-bottom:2px solid var(--navy);background:#fff}
+.svg-flowchart img{display:block;width:100%;height:auto;max-height:650px;object-fit:contain}
+@media print{.svg-flowchart{break-inside:avoid;page-break-inside:avoid}.svg-flowchart img{max-height:6.2in}}
